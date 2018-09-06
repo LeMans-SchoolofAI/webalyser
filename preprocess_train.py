@@ -52,11 +52,9 @@ def text_process(mess, stopwords, stopchars, nlp, dedoubl=True):
     tokens = ' '.join([word.lower() for word in nopunc.split() if (word.lower() not in stopwords and not word.lower().replace(' ','').isdigit())]) 
     
     if dedoubl:
-        #tokens = stemming_dedoubl_txt(tokens)
         tokens = [word for word in tokens.split()]
         return ' '.join(tokens)
     else:
-        #tokens = stemming_txt(toke        ns)
         return tokens
     
     
@@ -89,23 +87,27 @@ if __name__ == '__main__':
     with open('doc.txt', 'r') as f:
         docs = f.readlines()
         
-    print(f'\ndocs avant preprocess\n{len(docs)} items\ntype {type(docs)}\n{docs[0]}')
+    print('\ndocs avant preprocess ')
+    print(len(docs))
     
     nltk.download('punkt')
-    print(f'string.punctuation: {string.punctuation}')
+    print('string.punctuation: ')
+    print(string.punctuation)
 
     stopwords, stopchars = get_stopwords(STOP_WORDS)
     #nlp = fr_core_news_sm.load()
     nlp = spacy.load('fr')
     documents = [text_process(item, stopwords, stopchars, nlp) for item in docs]
-    print(f'\ndocs preprocessed\n{documents[0]}')
+    print('\ndocs preprocessed\n'.format(documents[0]))
           
     #word_counter is a collections.Counter()
     word_counter = words_count(documents)
-    print(f'\nword counter')
+    print('\nword counter')
     print(word_counter.most_common(len(word_counter) // 100))
     
-    print(f'training model')
+    print(documents[:2])
+    print('training model')
     model = gensim.models.Word2Vec (documents, size=160, window=10, min_count=2, workers=10)
     model.train(documents,total_examples=len(documents),epochs=10)
     model.save('w2v.model')
+    print('model trained')
