@@ -39,8 +39,8 @@ def text_process(mess, stopwords, stopchars, nlp, dedoubl=True):
     - Returns a list of the cleaned text
     """
     #lemmatize message
-    doc = nlp(mess)
-    mess = ' '.join([( word.lemma_) for word in doc])
+    #doc = nlp(mess)
+    #mess = ' '.join([( word.lemma_) for word in doc])
     
     #remove accents
     mess = decode_string(mess)
