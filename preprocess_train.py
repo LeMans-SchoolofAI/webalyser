@@ -1,20 +1,17 @@
 import gensim, logging
 from gensim.models import Word2Vec, word2vec
 import string
-import unicodedata
+#import unicodedata
 import collections
 import tarfile
-#import unicodedata
 import unidecode
-import string
 
 import nltk
-nltk.download('punkt')
 
 import spacy
-nlp = spacy.load('fr')
+#nlp = spacy.load('fr')
 from spacy.lang.fr.stop_words import STOP_WORDS
-import fr_core_news_sm #spacy
+#import fr_core_news_sm #spacy
 
 
 
@@ -80,18 +77,22 @@ def words_count(list_):
 
 if __name__ == '__main__':
     print('start')
-    #tar = tarfile.open("doc.txt.tar.bz2")
-    #tar.extractall()
-    #tar.close()
-    #print('untared file')
+    print('TODO python -m spacy download fr')
+    tar = tarfile.open("doc.txt.tar.bz2")
+    tar.extractall()
+    tar.close()
+    print('untared file')
     with open('doc.txt', 'r') as f:
         docs = f.readlines()
         
     print(f'\ndocs avant preprocess\n{len(docs)} items\ntype {type(docs)}\n{docs[0]}')
-    print(f'string.punctuation: {string.punctuation}')
     
+    nltk.download('punkt')
+    print(f'string.punctuation: {string.punctuation}')
+
     stopwords, stopchars = get_stopwords(STOP_WORDS)
-    nlp = fr_core_news_sm.load()
+    #nlp = fr_core_news_sm.load()
+    nlp = spacy.load('fr')
     documents = [text_process(item, stopwords, stopchars, nlp) for item in docs]
     print(f'\ndocs preprocessed\n{documents[0]}')
           
