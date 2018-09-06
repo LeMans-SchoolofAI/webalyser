@@ -7,3 +7,5 @@ NLP website comprehension - gensim, spacy, word2vec
 
 ## notebook jupyter
 
+https://send.firefox.com/download/a76de61e4a/#jfXtm_vc9sZ9ChQVhtwncw
+
