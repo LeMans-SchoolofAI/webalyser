@@ -5,7 +5,7 @@ import string
 import collections
 import tarfile
 import unidecode
-
+import os.path
 import nltk
 
 import spacy
@@ -78,10 +78,14 @@ def words_count(list_):
 if __name__ == '__main__':
     print('start')
     print('TODO python -m spacy download fr')
-    tar = tarfile.open("doc.txt.tar.bz2")
-    tar.extractall()
-    tar.close()
-    print('untared file')
+    
+
+    if not os.path.isfile('doc.txt'): 
+        tar = tarfile.open("doc.txt.tar.bz2")
+        tar.extractall()
+        tar.close()
+        print('untared file')
+        
     with open('doc.txt', 'r') as f:
         docs = f.readlines()
         
