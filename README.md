@@ -11,5 +11,3 @@ NLP website comprehension - gensim, spacy, word2vec
 - 2-preprocess_documents.ipynb : prepare dataset for word2vec training
 - (#notanotebook) training_word2vec.py : train word2vec model + try a prediction
 
-https://send.firefox.com/download/a76de61e4a/#jfXtm_vc9sZ9ChQVhtwncw
-
